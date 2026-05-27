@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title desc">
+  <title id="title">Balo World mark</title>
+  <desc id="desc">A circular Balo World brand mark with orbit lines and country points.</desc>
+  <rect width="180" height="180" rx="36" fill="#00357a"/>
+  <circle cx="90" cy="90" r="54" fill="#ffffff" opacity=".98"/>
+  <path d="M44 90h92M90 36c16 16 25 34 25 54s-9 38-25 54M90 36C74 52 65 70 65 90s9 38 25 54" fill="none" stroke="#00357a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M51 68c24 8 54 8 78 0M51 112c24-8 54-8 78 0" fill="none" stroke="#00a86b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="124" cy="57" r="9" fill="#00a86b"/>
+  <circle cx="57" cy="118" r="9" fill="#f3b61f"/>
+  <circle cx="117" cy="124" r="7" fill="#00357a"/>
+</svg>

@@ -1,0 +1,36 @@
+name: Deploy main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy files
+        env:
+          BALOWORLD_SSH_HOST: ${{ secrets.BALOWORLD_SSH_HOST }}
+          BALOWORLD_SSH_USER: ${{ secrets.BALOWORLD_SSH_USER }}
+          BALOWORLD_SSH_KEY: ${{ secrets.BALOWORLD_SSH_KEY }}
+          BALOWORLD_DEPLOY_PATH: ${{ secrets.BALOWORLD_DEPLOY_PATH }}
+        run: |
+          if [ -z "$BALOWORLD_SSH_HOST" ] || [ -z "$BALOWORLD_SSH_USER" ] || [ -z "$BALOWORLD_SSH_KEY" ] || [ -z "$BALOWORLD_DEPLOY_PATH" ]; then
+            echo "Baloworld deploy secrets are not configured. Skipping deploy."
+            exit 0
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$BALOWORLD_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$BALOWORLD_SSH_HOST" >> ~/.ssh/known_hosts
+          rsync -az --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '.gitignore' \
+            --exclude 'README.md' \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            ./ "$BALOWORLD_SSH_USER@$BALOWORLD_SSH_HOST:$BALOWORLD_DEPLOY_PATH/"
