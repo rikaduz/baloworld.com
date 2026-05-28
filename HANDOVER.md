@@ -15,6 +15,7 @@ Date: 2026-05-27
 
 - Standalone Baloworld project created outside the main Balo application.
 - Static country selector implemented in `index.html` and `styles.css`.
+- Page polished against the Balo brand system: official wordmark, Balo color tokens, social image assets and cleaner country cards.
 - GitHub Pages enabled from `main`.
 - DNS updated in GoDaddy:
   - `A @ 185.199.108.153`
